@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dbAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Fixtures">
+          <Key>
+            <PropertyRef Name="Idnr" />
+          </Key>
+          <Property Name="Idnr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="League" Type="nchar" MaxLength="100" />
+          <Property Name="Round" Type="nchar" MaxLength="10" />
+          <Property Name="HomeTeam" Type="nchar" MaxLength="100" />
+          <Property Name="HomeTeam_Id" Type="int" />
+          <Property Name="AwayTeam" Type="nchar" MaxLength="100" />
+          <Property Name="AwayTeam_Id" Type="nchar" MaxLength="100" />
+          <Property Name="Location" Type="nchar" MaxLength="100" />
+          <Property Name="HomeGoals" Type="int" />
+          <Property Name="AwayGoals" Type="int" />
+          <Property Name="Time" Type="nchar" MaxLength="100" />
+          <Property Name="HomeTeamYellowCardDetails" Type="nchar" MaxLength="256" />
+          <Property Name="AwayTeamYellowCardDetails" Type="nchar" MaxLength="256" />
+          <Property Name="HomeTeamRedCardDetails" Type="nchar" MaxLength="256" />
+          <Property Name="AwayTeamRedCardDetails" Type="nchar" MaxLength="256" />
+          <Property Name="HomeLineupGoalkeeper" Type="nchar" MaxLength="100" />
+          <Property Name="AwayLineupGoalkeeper" Type="nchar" MaxLength="100" />
+          <Property Name="HomeLineupDefense" Type="nchar" MaxLength="256" />
+          <Property Name="AwayLineupDefense" Type="nchar" MaxLength="256" />
+          <Property Name="HomeLineupMidfield" Type="nchar" MaxLength="256" />
+          <Property Name="AwayLineupMidfield" Type="nchar" MaxLength="256" />
+          <Property Name="HomeLineupForward" Type="nchar" MaxLength="256" />
+          <Property Name="AwayLineupForward" Type="nchar" MaxLength="256" />
+          <Property Name="HomeLineupSubstitutes" Type="text" />
+          <Property Name="AwayLineupSubstitutes" Type="text" />
+          <Property Name="HomeGoalDetails" Type="nchar" MaxLength="256" />
+          <Property Name="AwayGoalDetails" Type="nchar" MaxLength="256" />
+          <Property Name="Referee" Type="nchar" MaxLength="75" />
+        </EntityType>
+        <EntityType Name="Ligor">
+          <Key>
+            <PropertyRef Name="Id1" />
+          </Key>
+          <Property Name="Id1" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" />
+          <Property Name="Name" Type="nchar" MaxLength="100" />
+          <Property Name="Country" Type="nchar" MaxLength="75" />
+          <Property Name="Livescore" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'dbApp.dbo.Players' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Players">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Playerid" Type="int" />
+          <Property Name="Name" Type="nchar" MaxLength="150" />
+          <Property Name="Height" Type="nchar" MaxLength="10" />
+          <Property Name="Weight" Type="nchar" MaxLength="10" />
+          <Property Name="Nationality" Type="nchar" MaxLength="100" />
+          <Property Name="Team_Id" Type="int" />
+          <Property Name="PlayerNumber" Type="int" />
+          <Property Name="DateOfBirth" Type="nchar" MaxLength="20" />
+          <Property Name="DateOfSigning" Type="nchar" MaxLength="20" />
+          <Property Name="Signing" Type="nchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Teams">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Team_Id" Type="int" />
+          <Property Name="Name" Type="nchar" MaxLength="100" />
+          <Property Name="Country " Type="nchar" MaxLength="100" />
+          <Property Name="Stadium " Type="nchar" MaxLength="100" />
+          <Property Name="HomePageURL " Type="nchar" MaxLength="150" />
+          <Property Name="WIKILink " Type="nchar" MaxLength="150" />
+        </EntityType>
+        <EntityContainer Name="dbAppModelStoreContainer">
+          <EntitySet Name="Fixtures" EntityType="Self.Fixtures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ligor" EntityType="Self.Ligor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teams" EntityType="Self.Teams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Players" EntityType="Self.Players" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Players].[Id] AS [Id], 
+    [Players].[Playerid] AS [Playerid], 
+    [Players].[Name] AS [Name], 
+    [Players].[Height] AS [Height], 
+    [Players].[Weight] AS [Weight], 
+    [Players].[Nationality] AS [Nationality], 
+    [Players].[Team_Id] AS [Team_Id], 
+    [Players].[PlayerNumber] AS [PlayerNumber], 
+    [Players].[DateOfBirth] AS [DateOfBirth], 
+    [Players].[DateOfSigning] AS [DateOfSigning], 
+    [Players].[Signing] AS [Signing]
+    FROM [dbo].[Players] AS [Players]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Fixtures">
+          <Key>
+            <PropertyRef Name="Idnr" />
+          </Key>
+          <Property Name="Idnr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="League" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Round" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="HomeTeam" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="HomeTeam_Id" Type="Int32" />
+          <Property Name="AwayTeam" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="AwayTeam_Id" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="HomeGoals" Type="Int32" />
+          <Property Name="AwayGoals" Type="Int32" />
+          <Property Name="Time" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="HomeTeamYellowCardDetails" Type="String" MaxLength="256" FixedLength="true" Unicode="true" />
+          <Property Name="AwayTeamYellowCardDetails" Type="String" MaxLength="256" FixedLength="true" Unicode="true" />
+          <Property Name="HomeTeamRedCardDetails" Type="String" MaxLength="256" FixedLength="true" Unicode="true" />
+          <Property Name="AwayTeamRedCardDetails" Type="String" MaxLength="256" FixedLength="true" Unicode="true" />
+          <Property Name="HomeLineupGoalkeeper" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="AwayLineupGoalkeeper" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="HomeLineupDefense" Type="String" MaxLength="256" FixedLength="true" Unicode="true" />
+          <Property Name="AwayLineupDefense" Type="String" MaxLength="256" FixedLength="true" Unicode="true" />
+          <Property Name="HomeLineupMidfield" Type="String" MaxLength="256" FixedLength="true" Unicode="true" />
+          <Property Name="AwayLineupMidfield" Type="String" MaxLength="256" FixedLength="true" Unicode="true" />
+          <Property Name="HomeLineupForward" Type="String" MaxLength="256" FixedLength="true" Unicode="true" />
+          <Property Name="AwayLineupForward" Type="String" MaxLength="256" FixedLength="true" Unicode="true" />
+          <Property Name="HomeLineupSubstitutes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AwayLineupSubstitutes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="HomeGoalDetails" Type="String" MaxLength="256" FixedLength="true" Unicode="true" />
+          <Property Name="AwayGoalDetails" Type="String" MaxLength="256" FixedLength="true" Unicode="true" />
+          <Property Name="Referee" Type="String" MaxLength="75" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Ligor">
+          <Key>
+            <PropertyRef Name="Id1" />
+          </Key>
+          <Property Name="Id1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="75" FixedLength="true" Unicode="true" />
+          <Property Name="Livescore" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Teams">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Team_Id" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Country_" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Stadium_" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="HomePageURL_" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
+          <Property Name="WIKILink_" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Players">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Playerid" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
+          <Property Name="Height" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Weight" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Nationality" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Team_Id" Type="Int32" />
+          <Property Name="PlayerNumber" Type="Int32" />
+          <Property Name="DateOfBirth" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="DateOfSigning" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Signing" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="dbAppEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Fixtures" EntityType="Self.Fixtures" />
+          <EntitySet Name="Ligor" EntityType="Self.Ligor" />
+          <EntitySet Name="Teams" EntityType="Self.Teams" />
+          <EntitySet Name="Players" EntityType="Self.Players" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbAppModelStoreContainer" CdmEntityContainer="dbAppEntities">
+          <EntitySetMapping Name="Fixtures">
+            <EntityTypeMapping TypeName="dbAppModel.Fixtures">
+              <MappingFragment StoreEntitySet="Fixtures">
+                <ScalarProperty Name="Idnr" ColumnName="Idnr" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="League" ColumnName="League" />
+                <ScalarProperty Name="Round" ColumnName="Round" />
+                <ScalarProperty Name="HomeTeam" ColumnName="HomeTeam" />
+                <ScalarProperty Name="HomeTeam_Id" ColumnName="HomeTeam_Id" />
+                <ScalarProperty Name="AwayTeam" ColumnName="AwayTeam" />
+                <ScalarProperty Name="AwayTeam_Id" ColumnName="AwayTeam_Id" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="HomeGoals" ColumnName="HomeGoals" />
+                <ScalarProperty Name="AwayGoals" ColumnName="AwayGoals" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="HomeTeamYellowCardDetails" ColumnName="HomeTeamYellowCardDetails" />
+                <ScalarProperty Name="AwayTeamYellowCardDetails" ColumnName="AwayTeamYellowCardDetails" />
+                <ScalarProperty Name="HomeTeamRedCardDetails" ColumnName="HomeTeamRedCardDetails" />
+                <ScalarProperty Name="AwayTeamRedCardDetails" ColumnName="AwayTeamRedCardDetails" />
+                <ScalarProperty Name="HomeLineupGoalkeeper" ColumnName="HomeLineupGoalkeeper" />
+                <ScalarProperty Name="AwayLineupGoalkeeper" ColumnName="AwayLineupGoalkeeper" />
+                <ScalarProperty Name="HomeLineupDefense" ColumnName="HomeLineupDefense" />
+                <ScalarProperty Name="AwayLineupDefense" ColumnName="AwayLineupDefense" />
+                <ScalarProperty Name="HomeLineupMidfield" ColumnName="HomeLineupMidfield" />
+                <ScalarProperty Name="AwayLineupMidfield" ColumnName="AwayLineupMidfield" />
+                <ScalarProperty Name="HomeLineupForward" ColumnName="HomeLineupForward" />
+                <ScalarProperty Name="AwayLineupForward" ColumnName="AwayLineupForward" />
+                <ScalarProperty Name="HomeLineupSubstitutes" ColumnName="HomeLineupSubstitutes" />
+                <ScalarProperty Name="AwayLineupSubstitutes" ColumnName="AwayLineupSubstitutes" />
+                <ScalarProperty Name="HomeGoalDetails" ColumnName="HomeGoalDetails" />
+                <ScalarProperty Name="AwayGoalDetails" ColumnName="AwayGoalDetails" />
+                <ScalarProperty Name="Referee" ColumnName="Referee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ligor">
+            <EntityTypeMapping TypeName="dbAppModel.Ligor">
+              <MappingFragment StoreEntitySet="Ligor">
+                <ScalarProperty Name="Id1" ColumnName="Id1" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Livescore" ColumnName="Livescore" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teams">
+            <EntityTypeMapping TypeName="dbAppModel.Teams">
+              <MappingFragment StoreEntitySet="Teams">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Team_Id" ColumnName="Team_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Country_" ColumnName="Country " />
+                <ScalarProperty Name="Stadium_" ColumnName="Stadium " />
+                <ScalarProperty Name="HomePageURL_" ColumnName="HomePageURL " />
+                <ScalarProperty Name="WIKILink_" ColumnName="WIKILink " />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Players">
+            <EntityTypeMapping TypeName="dbAppModel.Players">
+              <MappingFragment StoreEntitySet="Players">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Playerid" ColumnName="Playerid" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="Team_Id" ColumnName="Team_Id" />
+                <ScalarProperty Name="PlayerNumber" ColumnName="PlayerNumber" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="DateOfSigning" ColumnName="DateOfSigning" />
+                <ScalarProperty Name="Signing" ColumnName="Signing" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

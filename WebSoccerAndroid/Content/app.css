@@ -1,0 +1,12 @@
+﻿.left {
+    text-align: left;
+}
+.right {
+    text-align: right;
+}
+.middle {
+    text-align: center;
+}
+td {
+    width: 350px;
+}

@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Soccer results Mobile</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="-1" />
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="http://code.jquery.com/mobile/latest/jquery.mobile.min.css"/>
+    <!--<link href="Content/jquery.mobile.theme-1.4.5.min.css" rel="stylesheet" />-->
+    <link href="Content/mobipick.css" rel="stylesheet" />
+    <link href="Content/Loader.css" rel="stylesheet"/>
+    <link href="Content/app.css" rel="stylesheet" />
+    <!--Javascript-->
+    <script src="scripts/xdate.js"></script>
+    <script src="scripts/xdate.i18n.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>
+    <script src="scripts/mobipick.js"></script>
+    <script src="scripts/app.js"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-79011130-1', 'auto');
+  ga('send', 'pageview');
+
+    </script>
+</head>
+<body>
+    <script>
+
+    </script>
+    <div data-role="page" id="main">
+
+        <div data-role="header" data-theme="a">
+            <!--<h1 color="white">Soccer Results</h1>-->
+            <input type="text" id="cboDate" />
+        </div><!-- /header -->
+        <div role="main" class="ui-content">
+            <div id="load"> </div>
+            <div>
+                <div id="info"></div>
+                <div id="products">
+                    <ul data-role="listview" data-inset="true" id="MessagesList" data-autodividers="true" data-theme="d" data-divider-theme="a"></ul>
+                </div>
+            </div>
+        </div><!-- /content -->
+        <div data-role="footer" data-position="fixed" data-theme="a">
+            <div data-role="navbar" data-iconpos="left" data-theme="a">
+                <ul>
+                    <li><a href="#ligor" data-icon="grid">Leuges</a></li>
+                    <!--<li><a href="#" data-icon="star">Teams</a></li>-->
+                    <li><a href="#about" role="button" data-transition="flip" data-icon="info">About</a></li>
+                </ul>
+            </div>
+            <h4>&copy; 2016 BLACKMETALCODER.SE</h4>
+        </div><!-- /footer -->
+    </div><!-- /page -->
+    <!-- Ligor-->
+<div data-role="page" id="ligor" data-quicklinks="true">
+    <div data-role="header">
+        <a href="#" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-shadow ui-corner-all" data-role="button" role="button">Back</a>
+        <h1>Leuges</h1>
+    </div>
+    <div role="main" class="ui-content">
+        <div id="products">
+            <ul data-role="listview" data-inset="true" id="LigaList" data-autodividers="true" data-theme="d" data-divider-theme="a"></ul>
+        </div>
+    </div>
+</div>
+<!--About-->
+    <div data-role="page" id="about" data-dialog="true">
+        <div data-role="header">
+            <h1>About Soccerresults</h1>
+            <a href="#" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-shadow ui-corner-all" data-role="button" role="button">Back</a>
+        </div>
+        <div role="main" class="ui-content">
+            <h1>Made by</h1>
+            <h2>BLACKMETALCODER.SE</h2>
+        </div>
+    </div>
+</body>
+</html>
