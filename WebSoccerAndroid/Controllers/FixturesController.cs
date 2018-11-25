@@ -1,13 +1,16 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using System.Web.UI.WebControls;
 using WebSoccerAndroid.Models;
@@ -16,12 +19,31 @@ namespace WebSoccerAndroid.Controllers
 {
     public class FixturesController : ApiController
     {
+        const string apiKey = "e9ecf8f219364df0ab6f292c105584ff";
+        private static async Task<dynamic> getDataFromService(string queryString)
+        {
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(queryString);
+                var response = await request.GetResponseAsync().ConfigureAwait(false);
+                var stream = response.GetResponseStream();
+                var streamReader = new StreamReader(stream);
+                string responseText = streamReader.ReadToEnd();
+                dynamic data = JsonConvert.DeserializeObject(responseText);
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+        }
         private dbAppEntities db = new dbAppEntities();
 
         // GET: api/Fixtures
         public IQueryable<Fixtures> GetFixtures(DateTime StartDatum)
         {
-            string svar;
+           
             DateTime datum = StartDatum;
             datum = StartDatum.AddDays(1);
             var resultatIdag = from a in db.Fixtures
@@ -31,7 +53,26 @@ namespace WebSoccerAndroid.Controllers
                                select a;
             return resultatIdag;
         }
+        /*[EnableCors(origins: "http://resultatservice.azurewebsites.net", headers: "*", methods: "*")]
+        public async static Task<string> GetFixtures(string Datum)
+        {
+            try
+            {
+                var client = new HttpClient();
+                var uri = new Uri("http://resultatservice.azurewebsites.net/api/Fixtures?StartDatum=" + Datum);
+                var Response = await client.GetAsync(uri);
+                var statusCode = Response.StatusCode;
+                Response.EnsureSuccessStatusCode();
+                var ResponseText = await Response.Content.ReadAsStringAsync();
+                return ResponseText;
+            }
 
+            catch (Exception ex)
+            {
+                return "fel";
+            }
+        }
+*/
         // GET: api/Fixtures/5
         [ResponseType(typeof(Fixtures))]
         public async Task<IHttpActionResult> GetFixtures(int id)

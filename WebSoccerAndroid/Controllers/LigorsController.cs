@@ -21,7 +21,7 @@ namespace WebSoccerAndroid.Controllers
         public IQueryable<Ligor> GetLigor()
         {
             var resultatIdag = from a in db.Ligor
-                               orderby a.Country
+                               orderby a.Country, a.Name
                                select a;
             return resultatIdag;
             //return db.Ligor;
