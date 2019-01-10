@@ -9,6 +9,7 @@
         <EntityTypeShape EntityType="dbAppModel.Ligor" Width="1.5" PointX="4.875" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="dbAppModel.Teams" Width="1.5" PointX="4.875" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="dbAppModel.Players" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbAppModel.tbLeagueStandings" Width="1.5" PointX="4.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

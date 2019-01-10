@@ -1,98 +1,74 @@
-﻿<html>
+﻿<!DOCTYPE html>
+<html>
 <head>
+    <title>Intradocument Hyperlinks at Work</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="-1" />
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-    <link href="Content/circle.css" rel="stylesheet" />
+    <link href="Content/app.css" rel="stylesheet" />
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!--JavaScript at end of body for optimized loading-->
     <script src="http://code.jquery.com/jquery-2.1.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('.modal').modal();
-            
-        });
-    </script>
+    <meta charset="UTF-8">
     <style>
-        .pie {
-            /* Basic layout */
-            display: inline-block;
-            width: 3.75em;
-            height: 3.75em;
-            border-radius: 50%;
-            /* A little styling */
-            border: .15em solid #fff;
-            box-shadow: 0 .075em .2em .05em rgba(0,0,0,.25);
-            /* fixes a minor clipping issue in Chrome */
-            background-origin: border-box;
-            background-image: conic-gradient( #d44 72deg,
-            #fc3 0 234deg,
-            #ac0 0)
+        td {
+            font-size:x-small;
+            padding-top: 2px;
+            padding-bottom : 2px;
+        }
+        th {
+            font-size: x-small;
+        }
+        thead {
+            background-color: #26a69a;
         }
     </style>
-</head>
-
-<body>
-
-    <input type="text" class="datepicker" id="cboDate">
-
-    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
-
     <script>
-
-        // Or with jQuery
-
         $(document).ready(function () {
-            $('.datepicker').datepicker({
-                selectMonths: true, // Creates a dropdown to control month
-                selectYears: 15, // Creates a dropdown of 15 years to control year,
-                today: 'Today',
-                clear: 'Clear',
-                close: 'Ok',
-                closeOnSelect: true, // Close upon selecting a date,
-                format: 'yyyy-mm-dd',
-                onSelect: function (events, inst) {
-
-                    //let test = $('#cboDate').datepicker({ dateFormat: 'yyyy-mm-dd' }).val();
-                    alert(events);
-                    //getGames();
-                },
-                onClose: function () {
-                    let test = $('#cboDate').datepicker({ dateFormat: 'yyyy-mm-dd' }).val();
-                    alert(test);
-                }
+            var settings = {
+                "async": true,
+                "url": "/api/tbLeagueStandings?League=" + "English League Championship                                                                         ",
+                "method": "GET"
+            };
+            $.ajax(settings).done(function (data) {
+                let T;
+                T += '<table class="striped"> <thead><tr>' +
+                    '<th>Team</th>' +
+                    '<th>Games</th>' +
+                    '<th>Won</th>' +
+                    '<th>Draw</th>' +
+                    '<th>Lost</th>' +
+                    '<th>oal</th>' +
+                    '<th>Points</th>' +
+                    '</tr>' +
+                    '</thead ><tbody>';
+                $.each(data, function (key, item) {
+                    T += '<tr>';
+                    T += '<td><b>' + item.Team + '</b></td>';
+                    T += '<td>' + item.Played + '</td>';
+                    T += '<td>' + item.Won + '</td>';
+                    T += '<td>' + item.Draw + '</td>';
+                    T += '<td>' + item.Lost + '</td>';
+                    T += '<td>' + item.Goal_Difference + '</td>';
+                    T += '<td>' + item.Points + '</td>';
+                    T += '</tr>';
+                });
+                T += '</tbody></table>';
+                var ret = T.replace('undefined', '');
+                $('#t').html(ret);
             });
-
         });
     </script>
-    <p class="range-field">
-        <input type="range" id="test5" min="0" value="20" max="90" />
-        <span class="thumb" style="left: 290.281px; height: 0px; width: 0px; top: 10px; margin-left: -6px;"><span class="value">20</span></span>
-    </p>
+</head>
+<body>
+    <div id="Tabell">
 
-    <div style="width: 100px; height: 100px; position: relative; border-radius: 100px; background-color: rgb(136, 143, 255);"><div style="position: absolute; top: 0px; left: 0px; width: 100px; height: 100px; border-radius: 100px; clip: rect(0px, 100px, 100px, 0px); transform: rotate(0deg);"><div style="background-color: rgb(0, 255, 0); position: absolute; top: 0px; left: 0px; width: 100px; height: 100px; border-radius: 100px; clip: rect(0px, 50px, 100px, 0px); transform: rotate(180deg);"></div></div><div style="position: absolute; top: 0px; left: 0px; width: 100px; height: 100px; border-radius: 100px; clip: rect(0px, 100px, 100px, 50px); transform: rotate(180deg);"><div style="background-color: rgb(0, 255, 0); position: absolute; top: 0px; left: 0px; width: 100px; height: 100px; border-radius: 100px; clip: rect(0px, 50px, 100px, 0px); transform: rotate(122.4deg);"></div></div></div>
-    <div class="pie"></div>
-
-    <div class="c100 p50 big green">
-        <span>50%</span>
-        <div class="slice">
-            <div class="bar"></div>
-            <div class="fill"></div>
-        </div>
-    </div>
-    <div id="modal1" class="modal">
-        <div class="modal-content">
-            <h4>Modal Header</h4>
-            <p>A bunch of text</p>
-        </div>
-
-        <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-        </div>
     </div>
 </body>
 </html>
-

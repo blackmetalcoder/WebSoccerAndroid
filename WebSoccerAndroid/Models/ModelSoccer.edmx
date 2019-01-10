@@ -68,6 +68,24 @@ warning 6002: The table/view 'dbApp.dbo.Players' does not have a primary key def
           <Property Name="DateOfSigning" Type="nchar" MaxLength="20" />
           <Property Name="Signing" Type="nchar" MaxLength="30" />
         </EntityType>
+        <EntityType Name="tbLeagueStandings">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Liga" Type="nchar" MaxLength="100" />
+          <Property Name="Team" Type="nchar" MaxLength="100" />
+          <Property Name="Played" Type="int" />
+          <Property Name="PlayedAtHome" Type="int" />
+          <Property Name="PlayedAway" Type="int" />
+          <Property Name="Won" Type="int" />
+          <Property Name="Draw" Type="int" />
+          <Property Name="Lost" Type="int" />
+          <Property Name="Goals_For" Type="int" />
+          <Property Name="Goals_Against" Type="int" />
+          <Property Name="Goal_Difference" Type="int" />
+          <Property Name="Points" Type="int" />
+        </EntityType>
         <EntityType Name="Teams">
           <Key>
             <PropertyRef Name="Id" />
@@ -83,6 +101,7 @@ warning 6002: The table/view 'dbApp.dbo.Players' does not have a primary key def
         <EntityContainer Name="dbAppModelStoreContainer">
           <EntitySet Name="Fixtures" EntityType="Self.Fixtures" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ligor" EntityType="Self.Ligor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbLeagueStandings" EntityType="Self.tbLeagueStandings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teams" EntityType="Self.Teams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Players" EntityType="Self.Players" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -182,7 +201,26 @@ warning 6002: The table/view 'dbApp.dbo.Players' does not have a primary key def
           <EntitySet Name="Ligor" EntityType="Self.Ligor" />
           <EntitySet Name="Teams" EntityType="Self.Teams" />
           <EntitySet Name="Players" EntityType="Self.Players" />
+          <EntitySet Name="tbLeagueStandings" EntityType="dbAppModel.tbLeagueStandings" />
         </EntityContainer>
+        <EntityType Name="tbLeagueStandings">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Liga" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Team" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Played" Type="Int32" />
+          <Property Name="PlayedAtHome" Type="Int32" />
+          <Property Name="PlayedAway" Type="Int32" />
+          <Property Name="Won" Type="Int32" />
+          <Property Name="Draw" Type="Int32" />
+          <Property Name="Lost" Type="Int32" />
+          <Property Name="Goals_For" Type="Int32" />
+          <Property Name="Goals_Against" Type="Int32" />
+          <Property Name="Goal_Difference" Type="Int32" />
+          <Property Name="Points" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -263,6 +301,25 @@ warning 6002: The table/view 'dbApp.dbo.Players' does not have a primary key def
                 <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
                 <ScalarProperty Name="DateOfSigning" ColumnName="DateOfSigning" />
                 <ScalarProperty Name="Signing" ColumnName="Signing" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbLeagueStandings">
+            <EntityTypeMapping TypeName="dbAppModel.tbLeagueStandings">
+              <MappingFragment StoreEntitySet="tbLeagueStandings">
+                <ScalarProperty Name="Points" ColumnName="Points" />
+                <ScalarProperty Name="Goal_Difference" ColumnName="Goal_Difference" />
+                <ScalarProperty Name="Goals_Against" ColumnName="Goals_Against" />
+                <ScalarProperty Name="Goals_For" ColumnName="Goals_For" />
+                <ScalarProperty Name="Lost" ColumnName="Lost" />
+                <ScalarProperty Name="Draw" ColumnName="Draw" />
+                <ScalarProperty Name="Won" ColumnName="Won" />
+                <ScalarProperty Name="PlayedAway" ColumnName="PlayedAway" />
+                <ScalarProperty Name="PlayedAtHome" ColumnName="PlayedAtHome" />
+                <ScalarProperty Name="Played" ColumnName="Played" />
+                <ScalarProperty Name="Team" ColumnName="Team" />
+                <ScalarProperty Name="Liga" ColumnName="Liga" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

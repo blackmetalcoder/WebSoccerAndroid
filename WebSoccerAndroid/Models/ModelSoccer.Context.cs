@@ -29,5 +29,6 @@ namespace WebSoccerAndroid.Models
         public virtual DbSet<Ligor> Ligor { get; set; }
         public virtual DbSet<Teams> Teams { get; set; }
         public virtual DbSet<Players> Players { get; set; }
+        public virtual DbSet<tbLeagueStandings> tbLeagueStandings { get; set; }
     }
 }

@@ -53,26 +53,15 @@ namespace WebSoccerAndroid.Controllers
                                select a;
             return resultatIdag;
         }
-        /*[EnableCors(origins: "http://resultatservice.azurewebsites.net", headers: "*", methods: "*")]
-        public async static Task<string> GetFixtures(string Datum)
+        public IQueryable<Fixtures> GetUpcomming(int id)
         {
-            try
-            {
-                var client = new HttpClient();
-                var uri = new Uri("http://resultatservice.azurewebsites.net/api/Fixtures?StartDatum=" + Datum);
-                var Response = await client.GetAsync(uri);
-                var statusCode = Response.StatusCode;
-                Response.EnsureSuccessStatusCode();
-                var ResponseText = await Response.Content.ReadAsStringAsync();
-                return ResponseText;
-            }
-
-            catch (Exception ex)
-            {
-                return "fel";
-            }
+            var resultatIdag = from a in db.Fixtures
+                               where a.HomeTeam_Id == id
+                               orderby a.Date
+                               select a;
+            return resultatIdag;
         }
-*/
+       
         // GET: api/Fixtures/5
         [ResponseType(typeof(Fixtures))]
         public async Task<IHttpActionResult> GetFixtures(int id)
